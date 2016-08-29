@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS news;
 
 USE news;
-CREATE TABLE if not exists `news` (
+CREATE TABLE IF NOT EXISTS `news` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
   `keywords` varchar(50) NOT NULL,
