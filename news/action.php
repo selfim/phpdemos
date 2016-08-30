@@ -22,7 +22,7 @@
             $addtime=time();
             //拼接SQL语句
             $sql="INSERT INTO news(title,keywords,author,addtime,content)
-                VALUES('$title','$keywords','author','$addtime','$content')";
+                VALUES('$title','$keywords','$author','$addtime','$content')";
             //echo $sql;exit;
             $res=$link->query($sql);
             if ($link->insert_id>0){
