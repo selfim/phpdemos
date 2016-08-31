@@ -37,7 +37,7 @@
             //1、获取id
             $id=$_GET['id']+0;
             //2、拼接SQL 并执行删除操作
-            $sql="DELETE FROM news where id=$id";
+            $sql="DELETE FROM news WHERE id=$id";
             $res=$link->query($sql);
             if ($res){
                 echo "<h3>删除成功</h3>";
@@ -53,7 +53,7 @@
             $id = $_POST['id']+0;
             
             //2.拼接SQL 并执行更新操作
-            $sql="UPDATE news SET title='{$title}',keywords='{$keywords}',author='{$author}',content='{$content}' where id={$id}";
+            $sql="UPDATE news SET title='{$title}',keywords='{$keywords}',author='{$author}',content='{$content}' WHERE id={$id}";
             //echo $sql;exit();
             $res=$link->query($sql);
             if ($res){
