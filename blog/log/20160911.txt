@@ -1,0 +1,76 @@
+###################################
+2016/09/11 22:56:52
+SELECT * FROM user WHERE name='admin'
+###################################
+
+###################################
+2016/09/11 22:57:27
+SELECT * FROM user WHERE name='admin'
+###################################
+
+###################################
+2016/09/11 22:57:45
+SELECT * FROM user WHERE name='admin'
+###################################
+
+###################################
+2016/09/11 22:58:33
+SELECT * FROM user WHERE name='admin'
+###################################
+
+###################################
+2016/09/11 22:59:15
+SELECT * FROM user WHERE name='admin'
+###################################
+
+###################################
+2016/09/11 22:59:39
+SELECT * FROM user WHERE name='admin'
+###################################
+
+###################################
+2016/09/11 23:00:21
+SELECT * FROM user WHERE name='admin'
+###################################
+
+###################################
+2016/09/11 23:00:22
+SELECT a.art_id,a.content,a.pubtime,a.title,a.comm,b.catname FROM art a LEFT JOIN cat b on a.cat_id=b.cat_id
+###################################
+
+###################################
+2016/09/11 23:01:26
+SELECT a.art_id,a.content,a.pubtime,a.title,a.comm,b.catname FROM art a LEFT JOIN cat b on a.cat_id=b.cat_id
+###################################
+
+###################################
+2016/09/11 23:02:38
+SELECT cat_id,catname FROM cat 
+###################################
+
+###################################
+2016/09/11 23:02:38
+SELECT COUNT(*) from art WHERE 1
+###################################
+
+###################################
+2016/09/11 23:02:38
+SELECT art_id,title,content,pubtime,comm,catname,thumb FROM art INNER JOIN cat 
+	ON art.cat_id=cat.cat_id WHERE 1 ORDER BY art_id DESC LIMIT 0,4
+###################################
+
+###################################
+2016/09/11 23:02:45
+SELECT * FROM art WHERE art_id=11
+###################################
+
+###################################
+2016/09/11 23:02:45
+SELECT title,content,pubtime,catname,comm,pic,thumb FROM art INNER JOIN cat ON art.cat_id=cat.cat_id WHERE art_id=11
+###################################
+
+###################################
+2016/09/11 23:02:45
+SELECT * FROM comment WHERE art_id=11
+###################################
+
