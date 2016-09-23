@@ -96,7 +96,7 @@
                         <i class="fa fa-dashboard"></i>  <a href="/admin.php?c=menu">菜单管理</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-table"></i><?php echo ($nav); ?>
+                        <i class="fa fa-table"></i>
                     </li>
                 </ol>
             </div>
