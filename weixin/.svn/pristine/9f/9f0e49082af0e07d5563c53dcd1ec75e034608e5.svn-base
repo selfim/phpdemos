@@ -1,0 +1,60 @@
+<?php
+	define('TOKEN','weixin');
+	$obj = new Weixin();
+	if(!isset($_GET['echostr'])){
+		$obj->recive();
+	}else{
+		$obj->checkSignature();
+	}
+	class Weixin{
+		
+		public function checkSignature(){
+
+        $signature = $_GET["signature"];
+
+        $timestamp = $_GET["timestamp"];
+
+        $nonce = $_GET["nonce"];
+
+        
+
+		$token = TOKEN;
+
+		$tmpArr = array($token, $timestamp, $nonce);
+
+		sort($tmpArr, SORT_STRING);
+
+		$tmpStr = implode( $tmpArr );
+
+		$tmpStr = sha1( $tmpStr );
+
+
+	if( $tmpStr == $signature ){
+
+		return true;
+
+	}else{
+
+		return false;
+
+	}
+
+	}
+		public function recive(){
+    			$obj=$GLOBALS['HTTP_RAW_POST_DATA'];
+    			$postSql=simplexml_load_string($xml,'SimpleXMLElement',LIBXML_NOCDATA);
+
+
+    			$this->logger("接受：\n".$obj);
+		}
+
+		public function logger($content){
+			$logSize = 100000;
+			//$logFile = 'log.txt';
+			$file="saestor://weixin/log.txt";
+			if(file_exists($file && filesize($file)>$logSize)){
+				unlink($file);
+			}
+			file_put_contents($file,date('Y/m/d H:i:s')." ".$content.'\n',FILE_APPEND);
+		}
+	}

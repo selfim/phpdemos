@@ -1,0 +1,135 @@
+<?php
+/**
+  * wechat php test
+  */
+
+//define your token
+define("TOKEN", "weixin");
+$wechatObj = new wechatCallbackapiTest();
+//$wechatObj->valid();
+$wechatObj->responseMsg();
+class wechatCallbackapiTest
+{
+	public function valid()
+    {
+        $echoStr = $_GET["echostr"];
+
+        //valid signature , option
+        if($this->checkSignature()){
+        	echo $echoStr;
+        	exit;
+        }
+    }
+
+    public function responseMsg()
+    {
+		//get post data, May be due to the different environments
+		//接收用户端发送过来的XML数据
+		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+
+      	//extract post data
+      	//判断数据是否为空
+		if (!empty($postStr)){
+                /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
+                   the best way is to check the validity of xml by yourself */
+				//防止XXE攻击
+                libxml_disable_entity_loader(true);
+                //把XML数据转化SimpleXML对象
+              	$postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+              	//手机端
+                $fromUsername = $postObj->FromUserName;
+				//微信公众平台
+                $toUsername = $postObj->ToUserName;
+                
+                //定义变量，接收MsgType节点
+                $msgType = $postObj->MsgType;
+                //接收用户发送的关键词
+                $keyword = trim($postObj->Content);
+                $time = time();
+                //文本回复模板
+                $textTpl = "<xml>
+							<ToUserName><![CDATA[%s]]></ToUserName>
+							<FromUserName><![CDATA[%s]]></FromUserName>
+							<CreateTime>%s</CreateTime>
+							<MsgType><![CDATA[%s]]></MsgType>
+							<Content><![CDATA[%s]]></Content>
+							<FuncFlag>0</FuncFlag>
+							</xml>"; 
+			//判断MsgType节点类型
+                if($msgType == 'text') {
+                	if(!empty( $keyword ))
+                	{
+						$msgType = "text";
+					//回复内容
+                	$contentStr = "Welcome to wechat world!";
+					//3.格式化字符串
+                	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+					//返回xml数据到客户端
+                	echo $resultStr;
+                }elseif($keyword == '?'||$keyword == '？'){
+					$msgType = "text";
+					$contentStr ="【1】特种服务号码\n【2】通讯服务号码\n【3】银行服务号码\n您可以回复【】中的编号获取信息哦！";
+					//3.格式化字符串
+                	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+					//返回xml数据到客户端
+                	echo $resultStr;
+				}elseif($keyword=='1'){
+					$msgType = "text";
+					$contentStr ="常用特种服务号码:\n火警:119\n匪警:110\n急救:120";
+					//3.格式化字符串
+                	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+					//返回xml数据到客户端
+                	echo $resultStr;
+				}elseif($keyword=='2'){
+					$msgType = "text";
+					$contentStr ="常用通讯服务号码:\n中国移动:10086\n中国联通:10010\n中国电信:10000";
+					//3.格式化字符串
+                	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+					//返回xml数据到客户端
+                	echo $resultStr;
+				}elseif($keyword=='3'){
+					$msgType = "text";
+					$contentStr ="常用银行服务号码:\n工商银行:95588\n建设银行:95533\n招商银行:95555";
+					//3.格式化字符串
+                	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+					//返回xml数据到客户端
+                	echo $resultStr;
+				
+				}
+				else{
+                	echo "Input something...";
+                }
+			}
+        }else {
+        	echo "";
+        	exit;
+        }
+    }
+		
+	private function checkSignature()
+	{
+        // you must define TOKEN by yourself
+        if (!defined("TOKEN")) {
+            throw new Exception('TOKEN is not defined!');
+        }
+        
+        $signature = $_GET["signature"];
+        $timestamp = $_GET["timestamp"];
+        $nonce = $_GET["nonce"];
+        		
+		$token = TOKEN;
+		$tmpArr = array($token, $timestamp, $nonce);
+        // use SORT_STRING rule
+		sort($tmpArr, SORT_STRING);
+		$tmpStr = implode( $tmpArr );
+		$tmpStr = sha1( $tmpStr );
+		
+		if( $tmpStr == $signature ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+}
+
+?>
