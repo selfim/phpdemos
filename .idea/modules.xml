@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://D:/softwares/phpStudy/WWW/.idea/WWW.iml" filepath="D:/softwares/phpStudy/WWW/.idea/WWW.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/online_github.iml" filepath="$PROJECT_DIR$/.idea/online_github.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../wwwdata/.idea/wwwdata.iml" filepath="$PROJECT_DIR$/../wwwdata/.idea/wwwdata.iml" />
+    </modules>
+  </component>
+</project>
