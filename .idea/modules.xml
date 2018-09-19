@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://D:/softwares/phpStudy/WWW/.idea/WWW.iml" filepath="D:/softwares/phpStudy/WWW/.idea/WWW.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/online_github.iml" filepath="$PROJECT_DIR$/.idea/online_github.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../wwwdata/.idea/wwwdata.iml" filepath="$PROJECT_DIR$/../wwwdata/.idea/wwwdata.iml" />
     </modules>
   </component>
 </project>
