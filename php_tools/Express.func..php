@@ -1,12 +1,23 @@
 <?php
+
+/**
+ * Class Express
+ * 快递查询助手类
+ */
 class Express{
     private static $_url = "http://www.kuaidi100.com/autonumber/autoComNum?text=";
+
+    /**
+     * 通过url获取数据
+     * @param $url 传入的url
+     * @return bool|mixed|string|void
+     */
     private function getUrlContent($url){
         if(!$url||!is_string($url)) return;
         if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url)){
             return false;
         }
-        if(function_exists(file_get_contents())){
+        if(function_exists('file_get_contents')){
             $file_contents = file_get_contents($url);
         }else{
             $ci = curl_init();
@@ -59,3 +70,6 @@ class Express{
     }
 
 }
+$ExprObj = new Express();
+$data = $ExprObj->getLogisticsInfo('71468206546159');
+echo '<pre>';var_dump($data);
